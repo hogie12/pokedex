@@ -1,21 +1,45 @@
-import { Card } from "@/components";
-import usePokemon from "@/hooks/usePokemon";
+import { Card, PokemonModal, TypeFilterChips } from "@/components";
+import { usePokemon, useTypes } from "@/hooks";
 
 const HomePage = () => {
-  const { pokemonList, loading, error, bottomRef } = usePokemon();
+  const {
+    pokemonList,
+    loading,
+    error,
+    bottomRef,
+    selectedPokemon,
+    detailLoading,
+    detailError,
+    selectPokemon,
+    clearSelectedPokemon,
+    selectedTypes,
+    setSelectedTypes,
+  } = usePokemon();
+
+  const { types, loading: typesLoading } = useTypes();
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[var(--background)] to-[var(--secondary)]">
       <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold mb-2">
             <span className="text-[var(--primary)]">Poké</span>
             <span className="text-[var(--accent)]">gie</span>
           </h2>
           <p className="text-[var(--muted-foreground)] text-base">
-            Explore the first generation of Pokémon
+            gotta catch em all
           </p>
         </div>
+
+        <div className="mb-8">
+          <TypeFilterChips
+            types={types}
+            loading={typesLoading}
+            selected={selectedTypes}
+            onChange={setSelectedTypes}
+          />
+        </div>
+
         {error && (
           <div className="text-center py-20">
             <p className="text-red-500 font-semibold">{error}</p>
@@ -37,10 +61,21 @@ const HomePage = () => {
                 name={pokemon.name}
                 imageUrl={pokemon.imageUrl}
                 types={pokemon.types}
+                onClick={() => selectPokemon(pokemon.id)}
               />
             ))}
           </div>
         )}
+
+        {!error && !loading && pokemonList.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-5xl mb-4">🔍</p>
+            <p className="text-[var(--muted-foreground)] font-medium">
+              No Pokémon match the selected type.
+            </p>
+          </div>
+        )}
+
         {loading && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {Array.from({ length: 24 }).map((_, i) => (
@@ -53,6 +88,13 @@ const HomePage = () => {
         )}
       </main>
       <div ref={bottomRef} />
+
+      <PokemonModal
+        pokemon={selectedPokemon}
+        loading={detailLoading}
+        error={detailError}
+        onClose={clearSelectedPokemon}
+      />
     </div>
   );
 };

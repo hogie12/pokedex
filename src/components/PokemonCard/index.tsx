@@ -6,11 +6,15 @@ interface PokemonCardProps {
   name: string;
   imageUrl: string;
   types: string[];
+  onClick?: () => void;
 }
 
-function PokemonCard({ name, imageUrl, types }: PokemonCardProps) {
+function PokemonCard({ name, imageUrl, types, onClick }: PokemonCardProps) {
   return (
-    <div className="group relative bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+    <div
+      onClick={onClick}
+      className="group relative bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+    >
       <div className="relative flex items-center justify-center">
         <img
           src={imageUrl}

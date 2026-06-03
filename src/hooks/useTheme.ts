@@ -7,7 +7,7 @@ function getInitialTheme(): Theme {
   return stored ?? "dark";
 }
 
-export function useTheme() {
+export default function useTheme() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
