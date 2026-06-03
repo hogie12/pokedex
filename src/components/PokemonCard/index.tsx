@@ -13,9 +13,10 @@ function PokemonCard({ name, imageUrl, types, onClick }: PokemonCardProps) {
   return (
     <div
       onClick={onClick}
-      className="group relative bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+      className="group relative overflow-hidden rounded-2xl cursor-pointer bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-2 hover:scale-110 transition-all duration-300"
     >
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center pt-5 pb-2">
+        <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300 blur-2xl bg-[var(--primary)] rounded-full scale-75" />
         <img
           src={imageUrl}
           alt={name}
@@ -24,7 +25,7 @@ function PokemonCard({ name, imageUrl, types, onClick }: PokemonCardProps) {
         />
       </div>
 
-      <div className="px-4 pb-4 pt-3 text-center">
+      <div className="px-4 pb-4 pt-2 text-center">
         <h2 className="text-base font-bold text-[var(--foreground)] mb-2 tracking-wide">
           {uppercaseFirstLetter(name)}
         </h2>

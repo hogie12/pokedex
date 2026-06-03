@@ -119,3 +119,6 @@ export interface PokemonType {
   slot: number;
   type: NamedAPIResource;
 }
+
+export type Theme = "light" | "dark";
+export type ThemeName = "bulbasaur" | "squirtle" | "charmander";

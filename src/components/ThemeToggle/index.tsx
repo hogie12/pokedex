@@ -47,6 +47,8 @@ function ThemeToggle() {
     <button
       id="theme-toggle"
       onClick={toggle}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] cursor-pointer"
     >
       <span

@@ -19,12 +19,13 @@ const HomePage = () => {
   const { types, loading: typesLoading } = useTypes();
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-[var(--background)] to-[var(--secondary)]">
+    <div className="relative min-h-screen bg-[var(--background)] overflow-x-hidden">
       <main className="max-w-7xl mx-auto px-4 py-10">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold mb-2">
-            <span className="text-[var(--primary)]">Poké</span>
-            <span className="text-[var(--accent)]">gie</span>
+            <span className="bg-gradient-to-t from[var(--primary)] via[var(--accent)] to-[var(--secondary)] bg-clip-text text-transparent">
+              Pokégie
+            </span>
           </h2>
           <p className="text-[var(--muted-foreground)] text-base">
             gotta catch em all
