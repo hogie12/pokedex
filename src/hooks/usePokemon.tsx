@@ -41,7 +41,6 @@ const usePokemon = () => {
       try {
         setLoading(true);
         setError(null);
-
         if (selectedTypes) {
           const { data } = await API.get(`type/${selectedTypes}`);
           const results = await Promise.all(
@@ -79,7 +78,6 @@ const usePokemon = () => {
 
   useEffect(() => {
     if (!bottomRef.current || loading || !hasMore || selectedTypes) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
@@ -89,9 +87,7 @@ const usePokemon = () => {
       },
       { threshold: 0.5 },
     );
-
     observer.observe(bottomRef.current);
-
     return () => {
       observer.disconnect();
     };
