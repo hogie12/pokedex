@@ -1,8 +1,14 @@
-import "./App.css";
-import { HomePage } from "./pages";
+import "@/App.css";
+import { ThemeToggle } from "@/components";
+import { HomePage } from "@/pages";
 
 function App() {
-  return <HomePage />;
+  return (
+    <>
+      <HomePage />
+      <ThemeToggle />
+    </>
+  );
 }
 
 export default App;
