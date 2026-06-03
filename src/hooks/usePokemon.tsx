@@ -9,7 +9,8 @@ async function fetchPokemon(url: string): Promise<Pokemon> {
     name: data.name,
     imageUrl:
       data.sprites.other["official-artwork"].front_default ??
-      data.sprites.front_default,
+      data.sprites.front_default ??
+      "",
     types: data.types.map((t: { type: { name: string } }) => t.type.name),
   };
 }
